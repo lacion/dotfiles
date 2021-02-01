@@ -1,0 +1,7 @@
+nodemon
+npm-check-updates
+react-native-cli
+create-react-app
+firebase-tools
+create-react-native-app
+react-devtools

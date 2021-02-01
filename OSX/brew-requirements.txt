@@ -1,0 +1,14 @@
+git
+node
+go
+npm
+yarn
+wget
+python
+protobuf
+awscli
+nvm
+gnu-sed
+gh
+cookiecutter
+kubectl
