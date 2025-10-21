@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+
+set -e
+set -u
+set -o pipefail
+IFS=$'\n\t'
+
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+echo "Linting zsh scripts..."
+find "$ROOT_DIR" -type f \( -name "*.zsh" -o -name "install.zsh" \) \
+  | while read -r f; do
+    echo "zsh -n $f"
+    zsh -n "$f"
+  done
+
+if command -v shellcheck >/dev/null 2>&1; then
+  echo "Running shellcheck (best-effort)..."
+  # shellcheck doesn't fully support zsh; still useful with -S warning
+  shellcheck -S warning $(find "$ROOT_DIR" -type f -name "*.zsh" -print)
+else
+  echo "shellcheck not found; skipping."
+fi
+
+echo "All zsh syntax checks passed."
+
+

@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+
+set -e
+set -u
+set -o pipefail
+IFS=$'\n\t'
+
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+echo "Cleanup helper"
+echo "This will remove symlinks under $HOME that point into $ROOT_DIR/home"
+read "?Proceed? [y/N] " resp
+if [[ "$resp" != "y" && "$resp" != "Y" ]]; then
+  echo "Aborted."
+  exit 0
+fi
+
+REPO_HOME="$ROOT_DIR/home"
+find "$REPO_HOME" -mindepth 1 \( -type f -o -type l -o -type d \) | while read -r src; do
+  rel="${src#$REPO_HOME/}"
+  dst="$HOME/$rel"
+  if [[ -L "$dst" ]]; then
+    target="$(readlink "$dst")"
+    if [[ "$target" == "$src" ]]; then
+      echo "Removing: $dst"
+      rm -f "$dst"
+    fi
+  fi
+done
+
+echo "Optionally, cleanup Homebrew with: BREW_BUNDLE_CLEANUP=1 ./install.zsh"
+
+

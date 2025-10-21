@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+
+set -e
+set -u
+set -o pipefail
+IFS=$'\n\t'
+
+echo "Updating Homebrew..."
+brew update || true
+brew upgrade || true
+brew cleanup || true
+
+echo "Updating npm corepack toolchains (if present)..."
+if command -v corepack >/dev/null 2>&1; then
+  corepack prepare pnpm@latest --activate || true
+  corepack prepare yarn@stable --activate || true
+fi
+
+echo "Updating pip/uv tools (if present)..."
+if command -v uv >/dev/null 2>&1; then
+  uv self update || true
+fi
+
+echo "Updating Go tools (if present)..."
+if command -v go >/dev/null 2>&1; then
+  go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest || true
+  go install github.com/go-delve/delve/cmd/dlv@latest || true
+  go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest || true
+fi
+
+echo "All updates attempted."
+
+

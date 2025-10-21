@@ -1,0 +1,76 @@
+{
+	"mcpServers": {
+		"Linear": {
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+		},
+		"Figma": {
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "http://127.0.0.1:3845/mcp"]
+		},
+		"context7": {
+			"command": "/bin/zsh",
+			"args": [
+				"-lc",
+				"$HOME/.cursor/mcp/mcp_run.zsh npx -y mcp-remote https://mcp.context7.com/mcp --header 'CONTEXT7_API_KEY:${CONTEXT7_API_KEY}'"
+			],
+			"env": {
+				"CONTEXT7_API_KEY": "op://development/Context7 API Key/credential"
+			}
+		},
+		"postgres": {
+			"command": "/bin/zsh",
+			"args": [
+				"-lc",
+				"$HOME/.cursor/mcp/mcp_run.zsh uv run postgres-mcp --access-mode=unrestricted"
+			],
+			"env": {
+				"DATABASE_URI": "op://development/Postgres Local/connection string"
+			}
+		},
+		"prometheus": {
+			"command": "/bin/zsh",
+			"args": [
+				"-lc",
+				"$HOME/.cursor/mcp/mcp_run.zsh docker run -i --rm -e PROMETHEUS_URL ghcr.io/pab1it0/prometheus-mcp-server:latest"
+			]
+		},
+		"RedisMCPServer": {
+			"command": "/bin/zsh",
+			"args": [
+				"-lc",
+				"$HOME/.cursor/mcp/mcp_run.zsh uvx --from redis-mcp-server@latest redis-mcp-server --url 'redis://localhost:6379/0'"
+			]
+		},
+		"mcp-pinecone": {
+			"command": "/bin/zsh",
+			"args": [
+				"-lc",
+				"$HOME/.cursor/mcp/mcp_run.zsh uv --directory {project_dir} run mcp-pinecone"
+			],
+			"env": {
+				"PINECONE_API_KEY": "op://development/Pinecone API Key/credential"
+			}
+		},
+		"shadcn-ui": {
+			"command": "/bin/zsh",
+			"args": [
+				"-lc",
+				"$HOME/.cursor/mcp/mcp_run.zsh npx @jpisnice/shadcn-ui-mcp-server --github-api-key ${GITHUB_TOKEN}"
+			],
+			"env": {
+				"GITHUB_TOKEN": "op://development/GitHub Personal Token/credential"
+			}
+		},
+		"posthog": {
+			"command": "/bin/zsh",
+			"args": [
+				"-lc",
+				"$HOME/.cursor/mcp/mcp_run.zsh npx -y mcp-remote@latest https://mcp.posthog.com/mcp --header 'Authorization:Bearer ${POSTHOG_TOKEN}'"
+			],
+			"env": {
+				"POSTHOG_TOKEN": "op://development/PostHog API Key/credential"
+			}
+		}
+	}
+}

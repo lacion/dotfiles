@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+set -e
+set -u
+set -o pipefail
+IFS=$'\n\t'
+
+usage() {
+  echo "Usage: services [start|stop|restart|status]"
+}
+
+cmd="${1:-}" || true
+case "$cmd" in
+  start)
+    brew services start postgresql@18 || true
+    brew services start redis || true
+    ;;
+  stop)
+    brew services stop postgresql@18 || true
+    brew services stop redis || true
+    ;;
+  restart)
+    brew services restart postgresql@18 || true
+    brew services restart redis || true
+    ;;
+  status)
+    brew services list | grep -E 'postgresql@18|redis' || true
+    ;;
+  *)
+    usage; exit 1;
+    ;;
+esac
+
+

@@ -1,0 +1,80 @@
+[init]
+	defaultBranch = main
+
+[diff]
+	mnemonicPrefix = true
+	wordRegex = "[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
+	compactionHeuristic = true
+
+[color]
+	ui = auto
+
+[color "grep"]
+	match = cyan bold
+	selected = blue
+	context = normal
+	filename = magenta
+	linenumber = green
+	separator = yellow
+	function = blue
+
+[pretty]
+	line = "%C(auto)%h %<|(60,trunc)%s %C(green)%ad%C(auto)%d"
+	detail = "%C(auto)%h %s%n  %C(yellow)by %C(blue)%an %C(magenta)<%ae> [%G?] %C(green)%ad%n %C(auto)%d%n"
+
+[merge]
+	defaultToUpstream = true
+
+[pull]
+	ff = only
+
+[mergetool]
+	keepBackup = false
+
+[push]
+	default = upstream
+
+[credential]
+	helper = cache --timeout=3600
+
+[grep]
+	lineNumber = true
+
+[advice]
+	detachedHead = false
+	waitingForEditor = false
+
+[user]
+	useConfigOnly = true
+	email = luismmorales@gmail.com
+	name = Luis Morales
+
+[http]
+	cookieFile = ~/.gitcookies
+
+[core]
+	excludesfile = ~/.gitignore_global
+	pager = delta
+	editor = nano
+	autocrlf = input
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[gitbutler]
+	gitbutlerCommitter = 1
+
+[delta]
+	line-numbers = true
+	features = side-by-side line-numbers decorations
+	whitespace-error-style = 22 reverse
+
+[interactive]
+	diffFilter = delta --color-only
+
+[add.interactive]
+	useBuiltin = false
