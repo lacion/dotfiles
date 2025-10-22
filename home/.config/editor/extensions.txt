@@ -27,3 +27,5 @@ openai.chatgpt
 rphlmr.vscode-drizzle-orm
 ms-ossdata.vscode-pgsql
 rangav.vscode-thunder-client
+ms-python.black-formatter
+inferrinizzard.prettier-sql-vscode

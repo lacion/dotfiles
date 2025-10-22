@@ -18,6 +18,12 @@ if ! command_exists mackup; then
   exit 0
 fi
 
+# Allow skipping via env flag
+if [ -n "${SKIP_MACKUP_BACKUP:-}" ]; then
+  info "SKIP_MACKUP_BACKUP set; skipping initial backup and LaunchAgent setup"
+  exit 0
+fi
+
 # Ensure config exists at $HOME/.mackup.cfg (link step already does this)
 if [ ! -f "$HOME/.mackup.cfg" ]; then
   warn "~/.mackup.cfg not found; create it or ensure link step ran"
@@ -62,9 +68,18 @@ info "Loading LaunchAgent for Mackup backups"
 launchctl unload -w "$LA_PLIST" 2>/dev/null || true
 launchctl load -w "$LA_PLIST" 2>/dev/null || true
 
-# Initial backup seed
+# Pre-create iCloud target directory to avoid shutil errors
+ICLOUD_ROOT="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Mackup"
+mkdir -p "$ICLOUD_ROOT" 2>/dev/null || true
+
+# Initial backup seed (log errors to file, not the terminal)
 info "Running initial mackup backup"
-mackup backup --force || warn "mackup backup failed"
+mktmp_log="$(mktemp)"
+if ! mackup backup --force >"$mktmp_log" 2>&1; then
+  warn "mackup backup failed; see $mktmp_log"
+else
+  rm -f "$mktmp_log" 2>/dev/null || true
+fi
 
 info "Mackup setup complete."
 

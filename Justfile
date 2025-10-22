@@ -18,4 +18,5 @@ services-stop:
 cleanup:
   ./bin/cleanup
 
-
+install:
+  ./install.zsh

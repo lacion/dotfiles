@@ -23,3 +23,5 @@ fi
 if [ -f "$HOME/.local_aliases" ]; then
     . "$HOME/.local_aliases"
 fi
+# bun completions
+[ -s "/Users/luismorales/.bun/_bun" ] && source "/Users/luismorales/.bun/_bun"

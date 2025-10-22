@@ -57,13 +57,14 @@ if [ -f "$REPO_CURSOR_DIR/mcp/mcp_run.zsh" ]; then
   create_symlink "$REPO_CURSOR_DIR/mcp/mcp_run.zsh" "$TARGET_CURSOR_DIR/mcp/mcp_run.zsh"
 fi
 
-# Install extensions from our list if possible
+# Install extensions using unified editor installer if available
 CURSOR_CFG_DIR="$REPO_ROOT/home/.config/cursor"
-if command_exists cursor && [ -f "$CURSOR_CFG_DIR/install-extensions.zsh" ]; then
-  info "Installing Cursor extensions from $CURSOR_CFG_DIR/extensions.txt"
-  zsh "$CURSOR_CFG_DIR/install-extensions.zsh" || warn "Cursor extensions install script failed"
+EDITOR_CFG_DIR="$REPO_ROOT/home/.config/editor"
+if command_exists cursor && [ -f "$EDITOR_CFG_DIR/install-extensions.zsh" ] && [ -f "$EDITOR_CFG_DIR/extensions.txt" ]; then
+  info "Installing Cursor extensions from $EDITOR_CFG_DIR/extensions.txt"
+  zsh "$EDITOR_CFG_DIR/install-extensions.zsh" --target cursor --extensions-file "$EDITOR_CFG_DIR/extensions.txt" || warn "Unified Cursor extensions install failed"
 else
-  info "Skipping extension install (cursor CLI or installer not available)."
+  info "Skipping Cursor extension install (missing CLI or unified installer)."
 fi
 
 info "Cursor global setup complete."

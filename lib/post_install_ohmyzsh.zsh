@@ -25,25 +25,23 @@ if ! command_exists curl && ! command_exists wget; then
 fi
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
-  info "oh-my-zsh already installed. Skipping."
-  exit 0
-fi
-
-info "Installing oh-my-zsh (unattended)..."
-# Ensure installer does not run zsh, does not chsh, and keeps existing .zshrc
-export RUNZSH=no
-export CHSH=no
-export KEEP_ZSHRC=yes
-export ZSH="$HOME/.oh-my-zsh"
-if command_exists curl; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || warn "oh-my-zsh install script failed"
-elif command_exists wget; then
-  sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || warn "oh-my-zsh install script failed"
+  info "oh-my-zsh already installed. Skipping installation."
 else
-  die "curl or wget is required to install oh-my-zsh."
+  info "Installing oh-my-zsh (unattended)..."
+  # Ensure installer does not run zsh, does not chsh, and keeps existing .zshrc
+  export RUNZSH=no
+  export CHSH=no
+  export KEEP_ZSHRC=yes
+  export ZSH="$HOME/.oh-my-zsh"
+  if command_exists curl; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || warn "oh-my-zsh install script failed"
+  elif command_exists wget; then
+    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || warn "oh-my-zsh install script failed"
+  else
+    die "curl or wget is required to install oh-my-zsh."
+  fi
+  info "oh-my-zsh installation step complete."
 fi
-
-info "oh-my-zsh installation step complete."
 
 # Restore repo-managed .zshrc symlink if the installer replaced it
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"

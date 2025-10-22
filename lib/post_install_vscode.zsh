@@ -84,4 +84,16 @@ fi
 
 info "VS Code setup finished (non-destructive)."
 
+# Install VS Code extensions using unified editor installer if available
+if command -v code >/dev/null 2>&1; then
+  if [ -f "$REPO_EDITOR_DIR/install-extensions.zsh" ] && [ -f "$REPO_EDITOR_DIR/extensions.txt" ]; then
+    info "Installing VS Code extensions from $REPO_EDITOR_DIR/extensions.txt"
+    zsh "$REPO_EDITOR_DIR/install-extensions.zsh" --target vscode --extensions-file "$REPO_EDITOR_DIR/extensions.txt" || warn "VS Code extensions install script failed"
+  else
+    info "Skipping VS Code extension install (unified installer or list not found)."
+  fi
+else
+  info "Skipping VS Code extension install (code CLI not available)."
+fi
+
 

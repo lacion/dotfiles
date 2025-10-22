@@ -10,9 +10,14 @@
 	"files.trimTrailingWhitespace": true,
 	"files.insertFinalNewline": true,
 
+	"workbench.colorTheme": "GitHub Dark",
+	"workbench.preferredDarkColorTheme": "GitHub Dark",
+	"workbench.preferredLightColorTheme": "GitHub Light",
+	"workbench.colorCustomizations": {},
+
 	"[typescript]": {
 		"updateImportsOnFileMove.enabled": "always",
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.tabSize": 2,
 		"editor.wordWrap": "off",
 		"editor.rulers": [100],
@@ -22,7 +27,7 @@
 		}
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.tabSize": 2,
 		"editor.wordWrap": "off",
 		"editor.rulers": [100],
@@ -32,7 +37,7 @@
 		}
 	},
 	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.tabSize": 2,
 		"editor.wordWrap": "off",
 		"editor.rulers": [100],
@@ -42,7 +47,7 @@
 		}
 	},
 	"[javascriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.tabSize": 2,
 		"editor.wordWrap": "off",
 		"editor.rulers": [100],
@@ -52,12 +57,12 @@
 		}
 	},
 	"[json]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.tabSize": 2,
 		"editor.wordWrap": "on"
 	},
 	"[jsonc]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.tabSize": 2,
 		"editor.wordWrap": "on"
 	},
@@ -89,7 +94,7 @@
 		"editor.tabSize": 2
 	},
 	"[astro]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.tabSize": 2
 	},
 	"[go]": {
