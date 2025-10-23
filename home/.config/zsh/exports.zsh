@@ -13,6 +13,9 @@ export GOBIN="${GOBIN:-$HOME/.local/bin}"
 
 export PATH="$HOME/.local/bin:$HOME/.local/sbin:$HOME/.cargo/bin:/usr/local/bin:/usr/local/sbin:$BUN_INSTALL/bin:$GOBIN:$PATH"
 
+# Ensure Go-installed binaries (default GOPATH) are available
+export PATH="$HOME/go/bin:$PATH"
+
 
 # Enable colors for `ls`, etc.
 export CLICOLOR=1

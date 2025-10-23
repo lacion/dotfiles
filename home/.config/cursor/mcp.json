@@ -1,5 +1,17 @@
 {
 	"mcpServers": {
+		"hexstrike-ai": {
+  		"command": "/Users/luismorales/projects/hexstrike-ai/hexstrike-env/bin/python3",
+  		"args":[
+    		"/Users/luismorales/projects/hexstrike-ai/hexstrike_mcp.py",
+    		"--server",
+    		"http://localhost:8888"],
+  		"description": "HexStrike AI v6.0 - Advanced Cybersecurity Automation Platform",
+  		"timeout": 300,
+  		"disabled": false,
+  		"env": {
+    		"PYTHONPATH": "/Users/luismorales/projects/hexstrike-ai/hexstrike-ai/"}
+    },
 		"Linear": {
 			"command": "npx",
 			"args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]

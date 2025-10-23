@@ -43,9 +43,10 @@ Defaults: everything runs. Use SKIP_* to turn things off.
 - `SKIP_SSH_SETUP=1`: don’t generate key/add to agent.
 - `SKIP_MACOS_TWEAKS=1`: don’t apply macOS defaults.
 - `SKIP_VSCODE_SETUP=1`: don’t import VS Code/Cursor settings.
-- `SKIP_CURSOR_SETUP=1`: don’t link Cursor configs or install extensions.
-- `SKIP_OHMYZSH_SETUP=1`: don’t install oh-my-zsh.
-- `SKIP_MACKUP_SETUP=1`: don’t configure Mackup backups.
+- `SKIP_CURSOR_SETUP=1`: don't link Cursor configs or install extensions.
+- `SKIP_OHMYZSH_SETUP=1`: don't install oh-my-zsh.
+- `SKIP_MACKUP_SETUP=1`: don't configure Mackup backups.
+- `INSTALL_SECURITY_TOOLS=1`: install additional security/penetration testing tools.
 
 🗂️ Project layout
 -----------------
@@ -64,6 +65,7 @@ Defaults: everything runs. Use SKIP_* to turn things off.
 - `lib/post_install_cursor.zsh`: Cursor global config and extensions.
 - `lib/post_install_ohmyzsh.zsh`: oh-my-zsh install (keeps your linked `.zshrc`).
 - `lib/post_install_mackup.zsh`: Mackup config + scheduled backups.
+- `lib/post_install_security.zsh`: Security/penetration testing tools installation.
 - `home/`: Files to link into `$HOME`; may contain profile subfolders.
 - Helpers: `bin/services`, `bin/update`, `bin/lint`, `bin/cleanup`, `Justfile`.
 

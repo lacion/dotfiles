@@ -100,5 +100,10 @@ if [ -z "${SKIP_MACKUP_SETUP:-}" ] && [ -f "${LIB_PATH}/post_install_mackup.zsh"
     zsh "${LIB_PATH}/post_install_mackup.zsh"
 fi
 
+# Security tools installation (default OFF; enable with INSTALL_SECURITY_TOOLS=1)
+if [ -n "${INSTALL_SECURITY_TOOLS:-}" ] && [ -f "${LIB_PATH}/post_install_security.zsh" ]; then
+    zsh "${LIB_PATH}/post_install_security.zsh" || warn "Security tools step failed (non-fatal); continuing"
+fi
+
 print_header "Installation Complete!"
 echo "Please restart your terminal for all changes to take effect."
